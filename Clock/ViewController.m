@@ -12,20 +12,29 @@
 
 @end
 
+static NSDateFormatter *dateFormatter = nil;
+
 @implementation ViewController
 
 @synthesize timeLabel;
+@synthesize dateLabel;
+
++ (void) initialize {
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        dateFormatter.dateFormat = @"YYYY-MM-dd,HH:mm:ss";
+        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    }
+}
 
 - (void)setTimeLabelByDate: (NSTimer *) timer {
     NSDate *now = [NSDate date];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    dateFormatter.dateFormat = @"HH:mm:ss";
-    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
 
-    [timeLabel setText:[dateFormatter stringFromDate:now]];
+    NSArray *strings = [[dateFormatter stringFromDate:now] componentsSeparatedByString:@","];
+
+    [dateLabel setText:strings[0]];
+    [timeLabel setText:strings[1]];
 }
 
 - (void)viewDidLoad {
@@ -35,11 +44,9 @@
     [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(setTimeLabelByDate:) userInfo:nil repeats:YES];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

@@ -10,9 +10,11 @@
 
 @interface ViewController : UIViewController {
     IBOutlet UILabel *timeLabel;
+    IBOutlet UILabel *dateLabel;
 }
 
 @property IBOutlet UILabel *timeLabel;
+@property IBOutlet UILabel *dateLabel;
 
 @end
 
