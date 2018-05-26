@@ -17,4 +17,3 @@
 @property IBOutlet UILabel *dateLabel;
 
 @end
-
