@@ -3,7 +3,7 @@
 //  Clock
 //
 //  Created by Yishen Miao on 7/24/17.
-//  Copyright © 2017 Yishen Miao. All rights reserved.
+//  Copyright © 2017-2018 Yishen Miao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
